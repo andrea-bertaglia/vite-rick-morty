@@ -2,6 +2,7 @@
 import axios from 'axios';
 import AppHeader from './components/AppHeader.vue'
 import CardsList from './components/CardsList.vue'
+
 export default {
   components: {
     AppHeader,
@@ -9,7 +10,7 @@ export default {
   },
   data() {
     return {
-      cardsArray: []
+      cardsArray: [],
     }
   },
   created() {
@@ -28,7 +29,7 @@ export default {
 <template>
   <h1>Questo è App.vue</h1>
   <AppHeader />
-  <CardsList />
+  <CardsList :cardsArray="cardsArray" />
 </template>
 
 <style lang="scss"></style>
