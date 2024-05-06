@@ -8,6 +8,8 @@ export default {
     props: {
         // passo l'array da App.vue
         cardsArray: Array,
+        // passo il valore di isLoading da App.vue
+        isLoading: Boolean,
     },
 }
 </script>
@@ -15,7 +17,7 @@ export default {
 <template>
 
 
-    <div class="container">
+    <div v-if="isLoading" class="container">
         <div class="row row-cols-4">
             <div class="col g-3 my-4" v-for="card in cardsArray">
 

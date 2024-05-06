@@ -1,19 +1,23 @@
 <script>
 import axios from 'axios';
 import AppHeader from './components/AppHeader.vue'
+import AppLoading from './components/AppLoading.vue'
 import CardsList from './components/CardsList.vue'
 
 export default {
   components: {
     AppHeader,
     CardsList,
+    AppLoading
   },
   data() {
     return {
       cardsArray: [],
+      isLoading: true
     }
   },
   created() {
+    console.log(this.isLoading);
     axios
       .get('https://rickandmortyapi.com/api/character')
       .then((resp) => {
@@ -21,6 +25,9 @@ export default {
         // salvo l'oggetto della chiamata API nell'array
         this.cardsArray = resp.data.results;
         console.log(this.cardsArray);
+        this.isLoading = false;
+        console.log(this.isLoading);
+
       });
   },
 }
@@ -29,7 +36,8 @@ export default {
 <template>
 
   <AppHeader />
-  <CardsList :cardsArray="cardsArray" />
+  <AppLoading :isLoading="isLoading" />
+  <CardsList :isLoading="!isLoading" :cardsArray="cardsArray" />
 
 </template>
 
