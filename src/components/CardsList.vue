@@ -17,7 +17,7 @@ export default {
 
     <div class="container">
         <div class="row row-cols-4">
-            <div class="col" v-for="card in cardsArray">
+            <div class="col g-3 my-4" v-for="card in cardsArray">
 
                 <CardItem :cardObj="card" />
             </div>
