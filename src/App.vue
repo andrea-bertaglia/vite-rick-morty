@@ -1,6 +1,12 @@
 <script>
 import axios from 'axios';
+import AppHeader from './components/AppHeader.vue'
+import CardsList from './components/CardsList.vue'
 export default {
+  components: {
+    AppHeader,
+    CardsList,
+  },
   data() {
     return {
       cardsArray: []
@@ -20,7 +26,9 @@ export default {
 </script>
 
 <template>
-  <h1>CIAO</h1>
+  <h1>Questo è App.vue</h1>
+  <AppHeader />
+  <CardsList />
 </template>
 
 <style lang="scss"></style>
