@@ -6,13 +6,14 @@ export default {
         CardItem,
     },
     props: {
+        // passo l'array da App.vue
         cardsArray: Array,
     },
 }
 </script>
 
 <template>
-    <h3>Questo è CardsList.vue</h3>
+
 
     <div class="container">
         <div class="row row-cols-4">

@@ -27,9 +27,14 @@ export default {
 </script>
 
 <template>
-  <h1>Questo è App.vue</h1>
+
   <AppHeader />
   <CardsList :cardsArray="cardsArray" />
+
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+body {
+  background-color: lightblue;
+}
+</style>
