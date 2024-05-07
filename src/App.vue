@@ -13,18 +13,19 @@ export default {
   data() {
     return {
       cardsArray: [],
-      isLoading: true
+      isLoading: false
     }
   },
   created() {
+    this.isLoading = true;
     console.log(this.isLoading);
     axios
       .get('https://rickandmortyapi.com/api/character')
       .then((resp) => {
-        // console.log(resp);
         // salvo l'oggetto della chiamata API nell'array
         this.cardsArray = resp.data.results;
         console.log(this.cardsArray);
+        // riporto lo status di isLoading a false
         this.isLoading = false;
         console.log(this.isLoading);
 
@@ -36,8 +37,8 @@ export default {
 <template>
 
   <AppHeader />
-  <AppLoading :isLoading="isLoading" />
-  <CardsList :isLoading="!isLoading" :cardsArray="cardsArray" />
+  <AppLoading v-if="isLoading" />
+  <CardsList v-else :cardsArray="cardsArray" />
 
 </template>
 
