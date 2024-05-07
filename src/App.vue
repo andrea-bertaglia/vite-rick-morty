@@ -15,7 +15,6 @@ export default {
   },
   data() {
     return {
-      cardsArray: [],
       isLoading: false,
       store,
     }
@@ -43,8 +42,8 @@ export default {
         })
         .then((resp) => {
           // salvo l'oggetto della chiamata API 
-          this.cardsArray = resp.data.results;
-          console.log(this.cardsArray);
+          this.store.cardsList = resp.data.results;
+          console.log(this.store.cardsList);
           // riporto lo status di isLoading a false
           this.isLoading = false;
           console.log("status isLoading", this.isLoading);
@@ -59,7 +58,7 @@ export default {
   <AppHeader />
   <AppSearch @filter="getCards" />
   <AppLoading v-if="isLoading" />
-  <CardsList v-else :cardsArray="cardsArray" />
+  <CardsList v-else :cardsArray="this.store.cardsList" />
 
 </template>
 
