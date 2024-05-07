@@ -15,7 +15,7 @@ export default {
         <div class="row text-center">
             <div>
                 <span class="px-2">Seleziona lo status</span>
-                <select v-model="store.selectedStatus">
+                <select @change="$emit('filter')" v-model="store.selectedStatus">
                     <option :value="status" v-for="status in statusArray">
                         {{ status }}</option>
                 </select>

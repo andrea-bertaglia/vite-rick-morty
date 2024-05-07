@@ -21,19 +21,35 @@ export default {
     }
   },
   created() {
-    this.isLoading = true;
-    console.log(this.isLoading);
-    axios
-      .get('https://rickandmortyapi.com/api/character')
-      .then((resp) => {
-        // salvo l'oggetto della chiamata API nell'array
-        this.cardsArray = resp.data.results;
-        console.log(this.cardsArray);
-        // riporto lo status di isLoading a false
-        this.isLoading = false;
-        console.log(this.isLoading);
+    this.getCards();
+  },
+  methods: {
+    getCards() {
+      this.isLoading = true;
+      console.log("get cards", this.store.selectedStatus);
 
-      });
+      const paramsObj = {
+        status: "",
+      };
+
+      if (this.store.selectedStatus !== "All") {
+        paramsObj.status = this.store.selectedStatus;
+      }
+      console.log("status selezionato: ", paramsObj.status);
+
+      axios
+        .get('https://rickandmortyapi.com/api/character', {
+          params: paramsObj,
+        })
+        .then((resp) => {
+          // salvo l'oggetto della chiamata API 
+          this.cardsArray = resp.data.results;
+          console.log(this.cardsArray);
+          // riporto lo status di isLoading a false
+          this.isLoading = false;
+          console.log("status isLoading", this.isLoading);
+        });
+    },
   },
 }
 </script>
@@ -41,7 +57,7 @@ export default {
 <template>
 
   <AppHeader />
-  <AppSearch />
+  <AppSearch @filter="getCards" />
   <AppLoading v-if="isLoading" />
   <CardsList v-else :cardsArray="cardsArray" />
 
