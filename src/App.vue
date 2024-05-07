@@ -1,19 +1,23 @@
 <script>
+import { store } from "./store";
 import axios from 'axios';
 import AppHeader from './components/AppHeader.vue'
 import AppLoading from './components/AppLoading.vue'
 import CardsList from './components/CardsList.vue'
+import AppSearch from './components/AppSearch.vue'
 
 export default {
   components: {
     AppHeader,
     CardsList,
-    AppLoading
+    AppLoading,
+    AppSearch,
   },
   data() {
     return {
       cardsArray: [],
-      isLoading: false
+      isLoading: false,
+      store,
     }
   },
   created() {
@@ -37,6 +41,7 @@ export default {
 <template>
 
   <AppHeader />
+  <AppSearch />
   <AppLoading v-if="isLoading" />
   <CardsList v-else :cardsArray="cardsArray" />
 
